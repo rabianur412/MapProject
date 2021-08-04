@@ -1,0 +1,16 @@
+C:\Users\Hakan\source\repos\Map\BusinessLayer\bin\Debug\BusinessLayer.dll
+C:\Users\Hakan\source\repos\Map\BusinessLayer\bin\Debug\BusinessLayer.pdb
+C:\Users\Hakan\source\repos\Map\BusinessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Hakan\source\repos\Map\BusinessLayer\bin\Debug\EntityLayer.dll
+C:\Users\Hakan\source\repos\Map\BusinessLayer\bin\Debug\FluentValidation.dll
+C:\Users\Hakan\source\repos\Map\BusinessLayer\bin\Debug\EntityFramework.dll
+C:\Users\Hakan\source\repos\Map\BusinessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Hakan\source\repos\Map\BusinessLayer\bin\Debug\DataAccessLayer.dll.config
+C:\Users\Hakan\source\repos\Map\BusinessLayer\bin\Debug\EntityLayer.pdb
+C:\Users\Hakan\source\repos\Map\BusinessLayer\bin\Debug\FluentValidation.xml
+C:\Users\Hakan\source\repos\Map\BusinessLayer\bin\Debug\EntityFramework.xml
+C:\Users\Hakan\source\repos\Map\BusinessLayer\obj\Debug\BusinessLayer.csprojAssemblyReference.cache
+C:\Users\Hakan\source\repos\Map\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Hakan\source\repos\Map\BusinessLayer\obj\Debug\BusinessLayer.csproj.CopyComplete
+C:\Users\Hakan\source\repos\Map\BusinessLayer\obj\Debug\BusinessLayer.dll
+C:\Users\Hakan\source\repos\Map\BusinessLayer\obj\Debug\BusinessLayer.pdb

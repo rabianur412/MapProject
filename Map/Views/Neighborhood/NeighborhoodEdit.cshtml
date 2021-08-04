@@ -1,0 +1,24 @@
+﻿@model EntityLayer.Concrete.Neighborhood
+@{
+    ViewBag.Title = "NeighborhoodEdit";
+    Layout = "~/Views/Shared/View1.cshtml";
+}
+<br />
+<h2>Mahalle Güncelleme Sayfası</h2>
+@using (Html.BeginForm("NeighborhoodEdit", "Neighborhood", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Mahalle ID")
+        @Html.TextBoxFor(x => x.NeighborhoodId, new { @class = "form-control" })
+        <br />
+        @Html.Label("Mahalle Adı")
+        @Html.TextBoxFor(x => x.NeighborhoodName, new { @class = "form-control" })   
+        <br />
+        @Html.Label("Koordinat Noktaları")
+        @Html.TextAreaFor(x => x.NeighborhoodCoordinate, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-success">Güncelle</button>
+    </div>
+}
+
+

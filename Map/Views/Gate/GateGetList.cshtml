@@ -1,0 +1,34 @@
+﻿@using EntityLayer.Concrete
+@model List<Gate>
+
+@{
+    ViewBag.Title = "GateGetList";
+    Layout = "~/Views/Shared/View1.cshtml";
+}
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Kapı No</th>
+        <th>Mahalle İsmi</th>
+        <th>Koordinat Noktası</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Başlıklar</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.GateId</th> @*th kalın yapar ifadeyi*@
+            <td>@item.GateNo</td>
+            <td>@item.GateCoordinate</td>
+            <td>@item.Neighborhood.NeighborhoodName</td>
+            <td><a href="/Gate/GateDelete/@item.GateId" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Gate/GateEdit/@item.GateId" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="/Map/Index" class="btn btn-primary">Haritalar</a></td>
+        </tr>
+    }
+
+</table>
+<br />

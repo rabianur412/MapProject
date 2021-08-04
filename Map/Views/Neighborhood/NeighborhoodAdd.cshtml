@@ -1,0 +1,24 @@
+﻿@model EntityLayer.Concrete.Neighborhood
+@{
+    ViewBag.Title = "NeighborhoodAdd";
+    Layout = "~/Views/Shared/View1.cshtml";
+}
+
+<h2>Yeni Mahalle Ekleme Sayfası</h2>
+<br/>
+@using (Html.BeginForm("NeighborhoodAdd", "Neighborhood", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.Label("Mahalle İsmini Giriniz")
+    @Html.TextBoxFor(x => x.NeighborhoodName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.NeighborhoodName)
+    <br /><br />
+    @Html.Label("Koordinat Noktalarını Girin:")
+    @Html.TextBoxFor(x => x.NeighborhoodCoordinate, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.NeighborhoodCoordinate)
+    <br /><br />
+    <button class="btn btn-info">Kaydet</button>
+</div>
+}
+
+

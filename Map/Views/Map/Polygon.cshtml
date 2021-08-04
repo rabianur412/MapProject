@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Polygon";
+    Layout = "~/Views/Shared/View1.cshtml";
+}
+@{ 
+    string sayac =ViewBag.ci;
+}
+<h2>Rabia</h2>
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/css/ol.css" type="text/css">
+    <style>
+        .map {
+            height: 750px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
+    <title>OpenLayers example</title>
+</head>
+<body>
+    <h2>Harita</h2>
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+       var raster = new ol.layer.Tile({
+        source: new ol.source.OSM()
+      });
+
+      var wkt = 'POLYGON((10.689 -25.092, 34.595 ' +
+          '-20.170, 38.814 -35.639, 13.502 ' +
+          '-39.155, 10.689 -25.092))';
+
+      var format = new ol.format.WKT();
+
+      var feature = format.readFeature(wkt, {
+        dataProjection: 'EPSG:4326',
+        featureProjection: 'EPSG:3857'
+      });
+
+      feature.set('MahalleAdi','Deneme Mahalle');
+       feature.set('MahalleId',1);
+
+      var vector = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          features: [feature]
+        })
+      });
+
+       var vectorBilgiAl = new ol.layer.Vector({
+        title:'Bilgi Al',
+        source: new ol.source.Vector({}),
+        wrapX: false
+      });
+
+      var map = new ol.Map({
+        layers: [raster, vector,vectorBilgiAl],
+        target: 'map',
+        view: new ol.View({
+            center: [@sayac],
+            zoom: 4
+        })
+      });
+
+       var  bilgiAl= new ol.interaction.Draw({
+            source: vectorBilgiAl.getSource(),
+            type: ('Point')
+        });
+
+      map.addInteraction(bilgiAl);
+
+      bilgiAl.on('drawend', function (event) {
+                var tiklanilanNoktaVerileri=[];
+
+                var format = new ol.format.WKT();
+
+                var selFeatureWkt = format.writeGeometry(event.feature.getGeometry(), {
+                    dataProjection: 'EPSG:3857',
+                    featureProjection: 'EPSG:3857'
+                });
+                //alert(selFeatureWkt);
+
+                vector.getSource().getFeatures().forEach(function(obje){
+
+                var objeExtend=obje.getGeometry().getExtent();
+
+                    var sonuc=ol.extent.intersects(objeExtend,event.feature.getGeometry().getExtent());
+                    if(sonuc){
+                        tiklanilanNoktaVerileri.push(obje.get('MahalleAdi')+'#'+obje.get('MahalleId'))
+                        }
+                    }
+                );
+
+                if(tiklanilanNoktaVerileri.length>0){
+
+                    alert('Tıklanılan Nokta Verileri : '+tiklanilanNoktaVerileri);
+                }
+                else
+                {
+                    alert('Tıklanılan noktada mahalle verisi bulunamadı !');
+                }
+
+                vectorBilgiAl.getSource().clear();
+
+            });
+
+        var select = new ol.interaction.Select({
+                    wrapX: false
+                    });
+        var modify = new ol.interaction.Modify({
+                    features: select.getFeatures()
+                    });
+        map.addInteraction(select);
+        map.addInteraction(modify);
+        //select.setActivate(false);
+        //modify.setActivate(false);
+
+        modify.on('modifyend',function(e){
+                    alert('Düzenleme Bitti');
+                    //console.log("feature id is",e.features.getArray()[0].getId());
+                    });
+        modify.on('change:active',function(e){
+                    alert('change:active');
+                    //console.log("feature id is",e.features.getArray()[0].getId());
+                    });
+        modify.on('propertychange',function(e){
+                    alert('Propery Change');
+                    //console.log("feature id is",e.features.getArray()[0].getId());
+                    });
+        bilgiAl.setActive(false);
+        select.setActive(true);
+    </script>
+</body>
+</html>
